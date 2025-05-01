@@ -1,5 +1,8 @@
 import typer
 from rich import print
+from rich.spinner import Spinner
+from rich.live import Live
+from prompt import generate_command
 
 app = typer.Typer(help="コマンド生成くん - 入力文からUnixコマンドを生成するCLI")
 
@@ -8,9 +11,12 @@ def generate(query: str):
     """自然文からUnixコマンドを生成"""
     print(f"[bold cyan]あなたの入力:[/bold cyan] {query}")
     
-    # 仮のレスポンス
-    print("[bold green]おすすめコマンド:[/bold green] ls -la")
-    print("説明: ディレクトリ内のファイルを詳細表示します")
+    spinner = Spinner("dots", text="コマンドを生成中...")
+
+    with Live(spinner, refresh_per_second=10):
+        command = generate_command(query)
+    
+    print(f"[bold green]おすすめコマンド:[/bold green] {command}")
 
 if __name__ == "__main__":
     app()

@@ -8,8 +8,8 @@ VENV_DIR="$INSTALL_DIR/venv"
 
 echo "🛠️ commandgenie をインストール中..."
 
-# rm -rf "$INSTALL_DIR"
-# git clone "$REPO_URL" "$INSTALL_DIR"
+rm -rf "$INSTALL_DIR"
+git clone "$REPO_URL" "$INSTALL_DIR"
 
 MODEL_DIR="$INSTALL_DIR/models"
 MODEL_FILE="$MODEL_DIR/japanese-ggml-model.gguf"

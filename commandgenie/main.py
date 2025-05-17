@@ -2,7 +2,7 @@ import typer
 from rich import print
 from rich.spinner import Spinner
 from rich.live import Live
-from prompt import generate_command
+from .model import generate_command
 
 app = typer.Typer(help="コマンド生成くん - 入力文からUnixコマンドを生成するCLI")
 
@@ -18,5 +18,5 @@ def generate(query: str):
     
     print(f"[bold green]おすすめコマンド:[/bold green] {command}")
 
-if __name__ == "__main__":
+def cli():
     app()

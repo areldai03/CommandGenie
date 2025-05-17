@@ -1,8 +1,11 @@
 from llama_cpp import Llama
 from context_manager import suppress_stdout_stderr
+import os
+
+MODEL_PATH = os.getenv("LLM_MODEL_PATH", "models/japanese-ggml-model.gguf")
 
 with suppress_stdout_stderr():
-    llm = Llama(model_path="./model/Llama-3-ELYZA-JP-8B-q4_k_m.gguf", n_ctx=2048, n_threads=4, verbose=False)
+    llm = Llama(model_path=MODEL_PATH, n_ctx=2048, n_threads=4, verbose=False)
 
 def apply_chat_template(messages: list) -> str:
     result = ""

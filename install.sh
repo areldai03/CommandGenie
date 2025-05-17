@@ -8,8 +8,8 @@ VENV_DIR="$INSTALL_DIR/venv"
 
 echo "🛠️ commandgenie をインストール中..."
 
-rm -rf "$INSTALL_DIR"
-git clone "$REPO_URL" "$INSTALL_DIR"
+# rm -rf "$INSTALL_DIR"
+# git clone "$REPO_URL" "$INSTALL_DIR"
 
 MODEL_DIR="$INSTALL_DIR/models"
 MODEL_FILE="$MODEL_DIR/japanese-ggml-model.gguf"
@@ -40,12 +40,23 @@ else
   esac
 fi
 
-python -m venv "$VENV_DIR"
+if command -v python3 &>/dev/null; then
+  PYTHON=python3
+  PIP=pip3
+elif command -v python &>/dev/null; then
+  PYTHON=python
+  PIP=pip
+else
+  echo "❌ Pythonが見つかりません。Pythonをインストールしてください。"
+  exit 1
+fi
+
+$PYTHON -m venv "$VENV_DIR"
 source "$VENV_DIR/bin/activate"
 
 cd "$INSTALL_DIR"
-pip install --upgrade pip
-pip install .
+$PIP install --upgrade pip
+$PIP install .
 
 # shellの種類を判別
 SHELL_NAME=$(basename "$SHELL")

@@ -23,7 +23,7 @@ chmod +x install.sh
 ### ✅ 方法②: pip 経由でインストール
 
 ```bash
-pip install git+https://github.com/yourusername/commandgenie.git
+pip install git+https://github.com/areldai03/Commandgenie.git
 ```
 ## 🦙 モデルの選択
 任意のモデルを使う場合

@@ -75,6 +75,7 @@ fi
 
 if ! grep -q "$VENV_DIR/bin" "$PROFILE_FILE"; then
   echo "export PATH=\"$VENV_DIR/bin:\$PATH\"" >> "$PROFILE_FILE"
+  echo "export LLM_MODEL_PATH=\"$MODEL_FILE\"" >> "$PROFILE_FILE"
   echo "✅ PATH を $PROFILE_FILE に追加しました（新しいターミナルで有効になります）"
 fi
 

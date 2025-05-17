@@ -18,7 +18,8 @@ MODEL_URL="https://huggingface.co/SakanaAI/TinySwallow-1.5B-Instruct-GGUF/resolv
 if [ -f "$MODEL_FILE" ]; then
   echo "モデルファイルが既に存在します。"
 else
-  read -p "モデルファイルをダウンロードしますか？ (y/n): " ANSWER
+  echo "モデルファイルをダウンロードしますか？ (y/n): "
+  read ANSWER
   case "$ANSWER" in
     [Yy]* )
       echo "モデルをダウンロードしています..."

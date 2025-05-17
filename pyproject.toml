@@ -13,5 +13,8 @@ dependencies = [
     "typer>=0.15.3",
 ]
 
+[tool.setuptools]
+packages = ["commandgenie"]
+
 [project.scripts]
 commandgenie = "commandgenie.main:cli"

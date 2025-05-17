@@ -82,4 +82,4 @@ fi
 
 echo "✅ インストール完了！以下のように使えます："
 echo ""
-echo "    commandgenie generate \"ファイルの検索方法\""
+echo "    commandgenie \"ファイルの検索方法\""

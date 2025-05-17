@@ -2,7 +2,9 @@ from llama_cpp import Llama
 from .context_manager import suppress_stdout_stderr
 import os
 
-MODEL_PATH = os.getenv("LLM_MODEL_PATH", "models/japanese-ggml-model.gguf")
+MODEL_PATH = os.getenv("LLM_MODEL_PATH")
+if MODEL_PATH is None:
+    MODEL_PATH = os.path.expanduser("~/.commandgenie/models/japanese-ggml-model.gguf")
 
 with suppress_stdout_stderr():
     llm = Llama(model_path=MODEL_PATH, n_ctx=2048, n_threads=4, verbose=False)
@@ -34,5 +36,6 @@ def generate_command(natural_text: str) -> str:
     prompt = apply_chat_template(messages)
     
     output = llm(prompt, max_tokens=128, stop=["<|user|>", "<|system|>"])
+    print(output)
     
-    return output["choices"][0]["text"].strip()
+    return output["choices"][0]["text"].split("\n")[0]

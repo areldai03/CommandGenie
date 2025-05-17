@@ -36,6 +36,5 @@ def generate_command(natural_text: str) -> str:
     prompt = apply_chat_template(messages)
     
     output = llm(prompt, max_tokens=128, stop=["<|user|>", "<|system|>"])
-    print(output)
     
     return output["choices"][0]["text"].split("\n")[0]

@@ -19,7 +19,8 @@ if [ -f "$MODEL_FILE" ]; then
   echo "モデルファイルが既に存在します。"
 else
   if [ -n "$ZSH_VERSION" ]; then
-    read "ANSWER?モデルファイルをダウンロードしますか？ (y/n): "
+    echo -n "モデルファイルをダウンロードしますか？ (y/n): "
+    read ANSWER
   elif [ -n "$BASH_VERSION" ]; then
     read -p "モデルファイルをダウンロードしますか？ (y/n): " ANSWER
   else

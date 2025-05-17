@@ -2,7 +2,7 @@
 
 set -e
 
-REPO_URL="https://github.com/yourusername/commandgenie.git"
+REPO_URL="https://github.com/areldai03/CommandGenie.git"
 INSTALL_DIR="$HOME/.commandgenie"
 VENV_DIR="$INSTALL_DIR/venv"
 
@@ -10,6 +10,27 @@ echo "🛠️ commandgenie をインストール中..."
 
 rm -rf "$INSTALL_DIR"
 git clone "$REPO_URL" "$INSTALL_DIR"
+
+MODEL_DIR="$INSTALL_DIR/models"
+MODEL_FILE="$MODEL_DIR/japanese-ggml-model.gguf"
+MODEL_URL="https://huggingface.co/SakanaAI/TinySwallow-1.5B-Instruct-GGUF/resolve/main/tinyswallow-1.5b-instruct-q8_0.gguf"
+
+if [ -f "$MODEL_FILE" ]; then
+  echo "モデルファイルが既に存在します。"
+else
+  read -p "モデルファイルをダウンロードしますか？ (y/n): " ANSWER
+  case "$ANSWER" in
+    [Yy]* )
+      echo "モデルをダウンロードしています..."
+      mkdir -p "$MODEL_DIR"
+      curl -L "$MODEL_URL" -o "$MODEL_FILE"
+      echo "モデルのダウンロードが完了しました。"
+      ;;
+    * )
+      echo "モデルのダウンロードをスキップしました。"
+      ;;
+  esac
+fi
 
 python -m venv "$VENV_DIR"
 source "$VENV_DIR/bin/activate"

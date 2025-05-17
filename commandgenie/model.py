@@ -1,5 +1,5 @@
 from llama_cpp import Llama
-from context_manager import suppress_stdout_stderr
+from .context_manager import suppress_stdout_stderr
 import os
 
 MODEL_PATH = os.getenv("LLM_MODEL_PATH", "models/japanese-ggml-model.gguf")
